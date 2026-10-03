@@ -68,6 +68,6 @@ class RecipientManager extends Component
 
     public function render()
     {
-        return view('livewire.recipient-manager')->layout('layouts.app');
+        return view('livewire.recipient-manager')->layout('layouts.app', ['title' => 'Penerima Dana']);
     }
 }

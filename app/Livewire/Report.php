@@ -52,6 +52,6 @@ class Report extends Component
             'bendaharaName' => Setting::getValue('nama_bendahara', 'NAMA BENDAHARA, S.Pd. I'),
             'kota' => Setting::getValue('kota', 'NAMA KOTA'),
             'category' => ReportCategory::where('code', $this->reportType)->first(),
-        ])->layout('layouts.app');
+        ])->layout('layouts.app', ['title' => 'Cetak Laporan']);
     }
 }

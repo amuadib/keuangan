@@ -34,6 +34,6 @@ class Dashboard extends Component
             'incomes' => json_encode(array_values($monthlyIncome)),
             'expenses' => json_encode(array_values($monthlyExpense)),
             'year' => $currentYear,
-        ])->layout('layouts.app');
+        ])->layout('layouts.app', ['title' => 'Dashboard']);
     }
 }

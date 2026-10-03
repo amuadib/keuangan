@@ -103,6 +103,6 @@ class UserManager extends Component
 
     public function render()
     {
-        return view('livewire.user-manager')->layout('layouts.app');
+        return view('livewire.user-manager')->layout('layouts.app', ['title' => 'Pengguna']);
     }
 }

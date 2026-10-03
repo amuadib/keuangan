@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8 space-y-8 font-sans">
+<div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 space-y-8 font-sans">
     <div class="bg-white shadow-xl sm:rounded-lg p-6">
         <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Kelola Daftar Penerima</h2>
         

@@ -162,6 +162,6 @@ class ReceiptComponent extends Component
 
         return view('livewire.receipt-component', [
             'selectedReceiptsToPrint' => $selectedReceiptsToPrint,
-        ])->layout('layouts.app');
+        ])->layout('layouts.app', ['title' => 'Cetak Kwitansi']);
     }
 }

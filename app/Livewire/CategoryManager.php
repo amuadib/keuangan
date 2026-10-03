@@ -79,6 +79,6 @@ class CategoryManager extends Component
 
     public function render()
     {
-        return view('livewire.category-manager')->layout('layouts.app');
+        return view('livewire.category-manager')->layout('layouts.app', ['title' => 'Kategori Laporan']);
     }
 }

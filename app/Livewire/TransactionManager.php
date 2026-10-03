@@ -7,9 +7,11 @@ use App\Models\ReportCategory;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Livewire\Attributes\Url;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Title('Transaksi & Laporan')]
 class TransactionManager extends Component
 {
     use WithPagination;
