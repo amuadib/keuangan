@@ -36,7 +36,7 @@ Ikuti langkah-langkah berikut untuk menjalankan aplikasi ini di komputer lokal A
 
 ### 1. Clone & Masuk ke Direktori
 ```bash
-git clone <url-repo-anda>
+git clone https://github.com/amuadib/keuangan
 cd keuangan
 ```
 
