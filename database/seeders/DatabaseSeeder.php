@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Setting;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,5 +23,12 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('password'),
             ]);
         }
+        Setting::create([
+            ['key' => 'nama_ketua', 'value' => 'Nama Ketua'],
+            ['key' => 'nama_bendahara', 'value' => 'Nama Bendahara'],
+            ['key' => 'kota', 'value' => 'Blitar'],
+            ['key' => 'nama_aplikasi', 'value' => 'Aplikasi Keuanganku'],
+            ['key' => 'terima_dari', 'value' => 'Bendahara'],
+        ]);
     }
 }
