@@ -5,7 +5,7 @@
             <a href="{{ route('transactions') }}" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                 &larr; Kembali ke Transaksi
             </a>
-            <button onclick="window.print()" class="ml-4 inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-green-600 hover:bg-green-700">
+            <button onclick="window.print()" class="cursor-pointer ml-4 inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-green-600 hover:bg-green-700">
                 🖨️ Cetak Laporan
             </button>
         </div>
@@ -127,7 +127,7 @@
                 <p>{{ $ketuaName }}</p>
             </div>
             <div class="text-left">
-                <p>{{ $kota }}, {{ Carbon\Carbon::now()->locale('id')->translatedFormat('d F Y') }}</p>
+                <p>{{ $kota }}, {{ Carbon\Carbon::create($year, $month, 1)->endOfMonth()->locale('id')->translatedFormat('d F Y') }}</p>
                 <p class="mb-16">BENDAHARA</p>
                 <p>{{ $bendaharaName }}</p>
             </div>
