@@ -95,7 +95,7 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rp {{ number_format($receipt->amount, 0, ',', '.') }}</td>
                         <td class="px-6 py-4 text-sm text-gray-900">{{ $receipt->for_payment }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-center font-medium">
-                            <button wire:click="deleteReceipt({{ $receipt->id }})" class="text-red-600 hover:text-red-900" onclick="confirm('Yakin hapus kwitansi ini?') || event.stopImmediatePropagation()">Hapus</button>
+                            <button wire:click="deleteReceipt({{ $receipt->id }})" class="cursor-pointer text-red-600 hover:text-red-900 mr-2 border border-red-200 px-2 py-1 rounded bg-red-50" onclick="confirm('Yakin hapus kwitansi ini?') || event.stopImmediatePropagation()">Hapus</button>
                         </td>
                     </tr>
                     @endforeach

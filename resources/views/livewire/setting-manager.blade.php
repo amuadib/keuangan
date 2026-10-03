@@ -51,8 +51,8 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-mono">{{ $setting->key }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">{{ $setting->value }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                <button wire:click="editSetting({{ $setting->id }})" class="text-indigo-600 hover:text-indigo-900 mr-4">Edit</button>
-                                <button wire:click="deleteSetting({{ $setting->id }})" class="text-red-600 hover:text-red-900" onclick="confirm('Yakin ingin menghapus pengaturan ini?') || event.stopImmediatePropagation()">Hapus</button>
+                                <button wire:click="editSetting({{ $setting->id }})" class="cursor-pointer text-yellow-600 hover:text-yellow-900 mr-2 border border-yellow-200 px-2 py-1 rounded bg-yellow-50">Edit</button>
+                                <button wire:click="deleteSetting({{ $setting->id }})" class="cursor-pointer text-red-600 hover:text-red-900 mr-2 border border-red-200 px-2 py-1 rounded bg-red-50" onclick="confirm('Yakin ingin menghapus pengaturan ini?') || event.stopImmediatePropagation()">Hapus</button>
                             </td>
                         </tr>
                         @empty
