@@ -36,6 +36,8 @@ class TransactionManager extends Component
 
     public $recipient_id = null;
 
+    public $editingId = null;
+
     protected $rules = [
         'date' => 'required|date',
         'description' => 'required|string',
@@ -59,19 +61,56 @@ class TransactionManager extends Component
     {
         $this->validate();
 
-        Transaction::create([
-            'report_type' => $this->reportType,
-            'date' => $this->date,
-            'description' => $this->description,
-            'type' => $this->type,
-            'amount' => $this->amount,
-            'recipient_id' => $this->recipient_id ?: null,
-        ]);
+        if ($this->editingId) {
+            $transaction = Transaction::find($this->editingId);
+            $transaction->update([
+                'report_type' => $this->reportType,
+                'date' => $this->date,
+                'description' => $this->description,
+                'type' => $this->type,
+                'amount' => $this->amount,
+                'recipient_id' => $this->recipient_id ?: null,
+            ]);
+            session()->flash('message', 'Transaksi berhasil diperbarui.');
+        } else {
+            Transaction::create([
+                'report_type' => $this->reportType,
+                'date' => $this->date,
+                'description' => $this->description,
+                'type' => $this->type,
+                'amount' => $this->amount,
+                'recipient_id' => $this->recipient_id ?: null,
+            ]);
+            session()->flash('message', 'Transaksi berhasil ditambahkan.');
+        }
 
-        $this->reset(['description', 'amount', 'recipient_id']);
+        $this->resetForm();
+    }
+
+    public function editTransaction($id)
+    {
+        $transaction = Transaction::find($id);
+        if ($transaction) {
+            $this->editingId = $transaction->id;
+            $this->reportType = $transaction->report_type;
+            $this->date = $transaction->date;
+            $this->description = $transaction->description;
+            $this->type = $transaction->type;
+            $this->amount = $transaction->amount;
+            $this->recipient_id = $transaction->recipient_id;
+        }
+    }
+
+    public function cancelEdit()
+    {
+        $this->resetForm();
+    }
+
+    private function resetForm()
+    {
+        $this->reset(['editingId', 'description', 'amount', 'recipient_id']);
         $this->type = 'income';
-
-        session()->flash('message', 'Transaksi berhasil ditambahkan.');
+        $this->date = Carbon::now()->format('Y-m-d');
     }
 
     public function deleteTransaction($id)

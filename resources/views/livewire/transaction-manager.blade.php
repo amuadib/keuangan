@@ -43,7 +43,9 @@
         </div>
 
         <form wire:submit.prevent="saveTransaction" class="bg-gray-50 p-4 rounded-lg border border-gray-200 mb-8 space-y-4">
-            <h3 class="text-lg font-medium text-gray-900">Tambah Transaksi Baru</h3>
+            <h3 class="text-lg font-medium text-gray-900">
+                {{ $editingId ? 'Edit Transaksi' : 'Tambah Transaksi Baru' }}
+            </h3>
             <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Tanggal</label>
@@ -65,9 +67,8 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Jenis</label>
                     <select wire:model="type" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                        <option value="income">Pemasukan (Masuk)</option>
-                        <option value="expense">Pengeluaran (Keluar)</option>
-                        <option value="initial_balance">Saldo Awal</option>
+                        <option value="income">Masuk</option>
+                        <option value="expense">Keluar</option>
                     </select>
                 </div>
                 <div x-data="{
@@ -84,9 +85,14 @@
                     <input type="text" x-model="formatted" required placeholder="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-right">
                 </div>
             </div>
-            <div class="flex justify-end">
+            <div class="flex justify-end space-x-2">
+                @if($editingId)
+                    <button type="button" wire:click="cancelEdit" class="cursor-pointer inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        Batal
+                    </button>
+                @endif
                 <button type="submit" class="cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
-                    Simpan Transaksi
+                    {{ $editingId ? 'Perbarui Transaksi' : 'Simpan Transaksi' }}
                 </button>
             </div>
         </form>
@@ -122,7 +128,8 @@
                             <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 text-right">Rp {{ number_format($trx->amount, 0, ',', '.') }}</td>
                             <td class="px-4 py-3 whitespace-nowrap text-center text-sm font-medium">
                                 <a href="{{ route('receipt', ['for_payment' => $trx->description, 'amount' => $trx->amount, 'date' => $trx->date, 'receiver_name' => $trx->recipient ? $trx->recipient->name : null]) }}" class="text-indigo-600 hover:text-indigo-900 mr-4 font-bold border border-indigo-200 px-2 py-1 rounded bg-indigo-50">Buat Kwitansi</a>
-                                <button wire:click="deleteTransaction({{ $trx->id }})" class="text-red-600 hover:text-red-900" onclick="confirm('Yakin ingin menghapus?') || event.stopImmediatePropagation()">Hapus</button>
+                                <button wire:click="editTransaction({{ $trx->id }})" class="cursor-pointer text-yellow-600 hover:text-yellow-900 mr-2 border border-yellow-200 px-2 py-1 rounded bg-yellow-50">Edit</button>
+                                <button wire:click="deleteTransaction({{ $trx->id }})" class="cursor-pointer text-red-600 hover:text-red-900 mr-2 border border-red-200 px-2 py-1 rounded bg-red-50" onclick="confirm('Yakin ingin menghapus?') || event.stopImmediatePropagation()">Hapus</button>
                             </td>
                         </tr>
                         @empty
