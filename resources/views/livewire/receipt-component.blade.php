@@ -109,10 +109,10 @@
 
     @if($showPrintView)
     <div class="mb-4 print:hidden">
-        <button wire:click="hidePrint" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+        <button wire:click="hidePrint" class="cursor-pointer inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
             &larr; Kembali
         </button>
-        <button onclick="window.print()" class="ml-4 inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-base font-bold rounded-md text-white bg-green-600 hover:bg-green-700">
+        <button onclick="window.print()" class="cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
             🖨️ Cetak Semua Kwitansi
         </button>
     </div>
