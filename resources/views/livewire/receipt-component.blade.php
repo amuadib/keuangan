@@ -1,8 +1,8 @@
 <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 space-y-8 font-sans">
     
     @if(!$showPrintView)
-    <div class="bg-white shadow-xl sm:rounded-lg p-6 print:hidden">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Buat Kwitansi</h2>
+    <div class="bg-white dark:bg-gray-800 shadow-xl sm:rounded-lg p-6 print:hidden transition-colors duration-200">
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 border-b border-gray-200 dark:border-gray-700 pb-2">Buat Kwitansi</h2>
         
         @if (session()->has('message'))
             <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
@@ -13,12 +13,12 @@
         <form wire:submit.prevent="saveReceipt" class="space-y-4 mb-10">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">Kwitansi No</label>
-                    <input type="text" wire:model="receipt_number" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Kwitansi No</label>
+                    <input type="text" wire:model="receipt_number" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">Sudah terima dari</label>
-                    <input type="text" wire:model="received_from" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Sudah terima dari</label>
+                    <input type="text" wire:model="received_from" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                 </div>
                 <div x-data="{
                     rawAmount: @entangle('amount').live,
@@ -30,30 +30,30 @@
                         this.rawAmount = value.replace(/\D/g, '');
                     }
                 }">
-                    <label class="block text-sm font-medium text-gray-700">Jumlah Uang (Rp)</label>
-                    <input type="text" x-model="formatted" required placeholder="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-right">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Jumlah Uang (Rp)</label>
+                    <input type="text" x-model="formatted" required placeholder="0" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-right">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">Terbilang</label>
-                    <span class="block w-full py-2 px-3">{{ $amount_words ?: 'Nol rupiah' }}</span>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Terbilang</label>
+                    <span class="block w-full py-2 px-3 text-gray-800 dark:text-gray-200">{{ $amount_words ?: 'Nol rupiah' }}</span>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700">Untuk pembayaran</label>
-                    <input type="text" wire:model="for_payment" required placeholder="Contoh: HONOR OP DAPODIK SEPTEMBER 2026" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Untuk pembayaran</label>
+                    <input type="text" wire:model="for_payment" required placeholder="Contoh: HONOR OP DAPODIK SEPTEMBER 2026" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                 </div>
                 <div class="grid grid-cols-2 gap-2">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Tempat</label>
-                        <input type="text" wire:model="place" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tempat</label>
+                        <input type="text" wire:model="place" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Tanggal</label>
-                        <input type="date" wire:model="date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tanggal</label>
+                        <input type="date" wire:model="date" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
                 </div>
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700">Nama Penerima</label>
-                    <input type="text" wire:model="receiver_name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nama Penerima</label>
+                    <input type="text" wire:model="receiver_name" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                 </div>
             </div>
             <div class="flex justify-end">
@@ -63,39 +63,39 @@
             </div>
         </form>
         
-        <hr class="mb-6">
+        <hr class="mb-6 border-gray-200 dark:border-gray-700">
         <div class="flex justify-between items-center mb-4">
-            <h3 class="text-xl font-bold text-gray-800">Daftar Kwitansi</h3>
+            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Daftar Kwitansi</h3>
             <button wire:click="showPrint" class="cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
                 🖨️ Cetak Terpilih
             </button>
         </div>
-        <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
+        <div class="overflow-x-auto border border-gray-200 dark:border-gray-700 rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-gray-50 dark:bg-gray-800">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-12">
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-12">
                             Pilih
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No Kwitansi</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Untuk Pembayaran</th>
-                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">No Kwitansi</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Tanggal</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Jumlah</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Untuk Pembayaran</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
+                <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                     @foreach($receipts as $receipt)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
-                            <input type="checkbox" wire:model="selectedReceiptIds" value="{{ $receipt->id }}" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                            <input type="checkbox" wire:model="selectedReceiptIds" value="{{ $receipt->id }}" class="rounded border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-indigo-600 focus:ring-indigo-500">
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $receipt->receipt_number }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ Carbon\Carbon::parse($receipt->date)->format('d-m-Y') }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rp {{ number_format($receipt->amount, 0, ',', '.') }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-900">{{ $receipt->for_payment }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">{{ $receipt->receipt_number }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">{{ Carbon\Carbon::parse($receipt->date)->format('d-m-Y') }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">Rp {{ number_format($receipt->amount, 0, ',', '.') }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-200">{{ $receipt->for_payment }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-center font-medium">
-                            <button wire:click="deleteReceipt({{ $receipt->id }})" class="cursor-pointer text-red-600 hover:text-red-900 mr-2 border border-red-200 px-2 py-1 rounded bg-red-50" onclick="confirm('Yakin hapus kwitansi ini?') || event.stopImmediatePropagation()">Hapus</button>
+                            <button wire:click="deleteReceipt({{ $receipt->id }})" class="cursor-pointer text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300 mr-2 border border-red-200 dark:border-red-800 px-2 py-1 rounded bg-red-50 dark:bg-red-900/30" onclick="confirm('Yakin hapus kwitansi ini?') || event.stopImmediatePropagation()">Hapus</button>
                         </td>
                     </tr>
                     @endforeach
