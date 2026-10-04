@@ -119,7 +119,7 @@
 
     @foreach($selectedReceiptsToPrint as $selectedReceipt)
     {{-- Kwitansi Print View --}}
-    <div class="bg-white p-6 sm:p-10 w-full max-w-4xl mx-auto border border-black text-black print:p-8 print:m-0 print:border-black mb-8" style="font-family: Arial, sans-serif; page-break-after: always; break-after: page;">
+    <div class="bg-white p-6 sm:p-10 w-full max-w-4xl mx-auto border border-black text-black print:p-8 print:m-0 print:border-black mb-8" style="font-family: Arial, sans-serif; page-break-inside: avoid; break-inside: avoid;">
         <table class="w-full text-sm sm:text-base leading-relaxed mb-6">
             <tr>
                 <td class="w-[25%] font-semibold pb-8 align-top">Kwitansi No</td>
@@ -146,7 +146,7 @@
         <div class="flex justify-between items-start mt-4">
             <div class="bg-gray-800 text-white font-bold text-lg px-4 py-1 flex items-center print:bg-gray-800 print:text-white" style="-webkit-print-color-adjust: exact; print-color-adjust: exact;">
                 <span class="mr-12 italic text-gray-200">Rp</span> 
-                <span>{{ number_format($selectedReceipt->amount, 0, ',', '.') }}</span>
+                <span class="italic text-gray-200">{{ number_format($selectedReceipt->amount, 0, ',', '.') }}</span>
             </div>
             
             <div class="text-left text-sm sm:text-base mr-8">
